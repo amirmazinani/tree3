@@ -1,7 +1,7 @@
 # tree3
 [![PyPI](https://img.shields.io/pypi/v/tree3)](https://pypi.org/project/tree3/) ![License](https://img.shields.io/pypi/l/tree3) [![GitHub Repo stars](https://img.shields.io/github/stars/amirmazinani/tree3?style=flat&label=github%20stars&color=%2357d9a3)](https://github.com/amirmazinani/tree3)
 
-A command line utility to display and create directory structures.
+A command-line utility to display and create directory structures.
 
 ## Installation
 
@@ -11,10 +11,36 @@ pip install tree3
 
 ## Usage
 
+tree3 provides various options for displaying and managing directory structures.
+
 ### Display directory structure
 
 ```bash
 tree3 [path]
+```
+#### Example output:
+```
+/
+├── tree3/
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── builder.py
+│   │   ├── parser.py
+│   │   └── tree.py
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── clipboard.py
+│   │   ├── file_utils.py
+│   │   └── gitignore.py
+│   ├── __init__.py
+│   ├── __main__.py
+│   ├── cli.py
+│   ├── config.py
+│   └── constants.py
+├── LICENSE
+├── pyproject.toml
+├── README.md
+└── setup.py
 ```
 
 ### Save directory structure to file
@@ -58,7 +84,7 @@ tree3
 ### Example 2: Save structure to file and copy to clipboard
 
 ```bash
-tree3 myproject -o project-structure.txt --copy
+tree3 myproject -o project-structure.txt -c
 ```
 
 ### Example 3: Create directory structure from file
@@ -66,3 +92,11 @@ tree3 myproject -o project-structure.txt --copy
 ```bash
 tree3 -i project-structure.txt
 ```
+
+## Contributing
+
+Feel free to open issues and pull requests on the [GitHub repository](https://github.com/amirmazinani/tree3).
+
+## License
+
+This project is licensed under the MIT License.
