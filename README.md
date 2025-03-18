@@ -1,4 +1,5 @@
 # tree3
+[![PyPI](https://img.shields.io/pypi/v/tree3)](https://pypi.org/project/tree3/) ![License](https://img.shields.io/pypi/l/tree3) [![GitHub Repo stars](https://img.shields.io/github/stars/amirmazinani/tree3?style=flat&label=github%20stars&color=%2357d9a3)](https://github.com/amirmazinani/tree3)
 
 A command line utility to display and create directory structures.
 
@@ -37,7 +38,7 @@ tree3 -g
 ### Copy structure to clipboard
 
 ```bash
-tree3 --copy
+tree3 -c
 ```
 
 ### Get help
