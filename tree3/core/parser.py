@@ -30,7 +30,7 @@ class TreeParser:
             raise ValueError("Empty tree structure")
 
         # Extract root directory
-        root_match = re.match(r'^(.+)/$', lines[0])
+        root_match = re.match(r'^(.*)/$', lines[0])
         if not root_match:
             raise ValueError(
                 "Invalid tree structure format: root directory not found")
@@ -50,7 +50,7 @@ class TreeParser:
 
             # Calculate the indent level
             # (number of spaces/pipes before the connector)
-            indent_match = re.match(r'^([\s│├└]*)([├└]── )(.+)$', line)
+            indent_match = re.match(r'^([\s│├└]*)([├└]── )(.+?)\s*$', line)
             if not indent_match:
                 continue
 
