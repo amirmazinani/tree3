@@ -1,4 +1,7 @@
 # tree3
+
+![Tree3-](https://repository-images.githubusercontent.com/950726237/436e5063-14f9-42a0-923e-b22c8256ce1f)
+
 [![PyPI](https://img.shields.io/pypi/v/tree3)](https://pypi.org/project/tree3/) ![License](https://img.shields.io/pypi/l/tree3) [![GitHub Repo stars](https://img.shields.io/github/stars/amirmazinani/tree3?style=flat&label=github%20stars&color=%2357d9a3)](https://github.com/amirmazinani/tree3)
 
 A command-line utility to display and create directory structures.
@@ -100,3 +103,7 @@ Feel free to open issues and pull requests on the [GitHub repository](https://gi
 ## License
 
 This project is licensed under the MIT License.
+
+---
+
+Built with ♥ by [Amir Mazinani](https://amirmazinani.ir)!
