@@ -2,9 +2,25 @@
 
 ![Tree3-](https://repository-images.githubusercontent.com/950726237/436e5063-14f9-42a0-923e-b22c8256ce1f)
 
-[![PyPI](https://img.shields.io/pypi/v/tree3)](https://pypi.org/project/tree3/) ![License](https://img.shields.io/pypi/l/tree3) [![GitHub Repo stars](https://img.shields.io/github/stars/amirmazinani/tree3?style=flat&label=github%20stars&color=%2357d9a3)](https://github.com/amirmazinani/tree3)
+[![PyPI](https://img.shields.io/pypi/v/tree3)](https://pypi.org/project/tree3/) ![License](https://img.shields.io/pypi/l/tree3) [![GitHub Repo stars](https://img.shields.io/github/stars/amirmazinani/tree3?style=flat&label=github%20stars&color=%2357d9a3)](https://github.com/amirmazinani/tree3) [![PyPI Downloads](https://static.pepy.tech/badge/tree3)](https://pepy.tech/projects/tree3)
 
-A command-line utility to display and create directory structures.
+**A command-line utility to display and create directory structures. (Works on all operating systems: `Linux`, `macOS`, `Windows` and etc.)**
+
+If you're a programmer and have worked with AI, you’ve likely encountered situations where you ask it to generate code for a project, and it provides you with a project structure (like the one below). You then have to manually create the files and folders according to that structure.
+
+```
+/
+├── src/
+│   ├── main.py
+│   └── utils.py
+├── config.py
+├── README.md
+└── setup.py
+```
+
+Other times, when you want to share your code with the AI for improvements, you first need to explain your project's structure so it can fully understand how your project is organized.
+
+If you’ve faced either of these issues, **`Tree3`** is here to help! With just one command, you can extract the structure of your project, and with another command, it will quickly generate the structure for you.
 
 ## Installation
 
@@ -21,7 +37,9 @@ tree3 provides various options for displaying and managing directory structures.
 ```bash
 tree3 [path]
 ```
+
 #### Example output:
+
 ```
 /
 ├── tree3/
