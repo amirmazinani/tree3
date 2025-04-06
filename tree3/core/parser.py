@@ -30,12 +30,14 @@ class TreeParser:
             raise ValueError("Empty tree structure")
 
         # Extract root directory
-        root_match = re.match(r'^(.*)/$', lines[0])
+        root_match = re.match(
+            r'^(?:\s*\/*\s*)([^\s].*?[^\s])(?:\s*\/*\s*)(?:#\s*.*)?$',
+            lines[0])
         if not root_match:
             raise ValueError(
                 "Invalid tree structure format: root directory not found")
 
-        self.root_dir = root_match.group(1)
+        self.root_dir = re.sub(r"[\/\"\\*?<>|:]", "", root_match.group(1))
         current_path = Path(self.root_dir)
         self.structure.append(current_path)
 
@@ -50,7 +52,9 @@ class TreeParser:
 
             # Calculate the indent level
             # (number of spaces/pipes before the connector)
-            indent_match = re.match(r'^([\s│├└]*)([├└]── )(.+?)\s*$', line)
+            indent_match = re.match(
+                r'^([\s│├└]*)([├└]─+\s*)([^\s].*?[^\s])(?:\s*)(?:#\s*.*)?$',
+                line)
             if not indent_match:
                 continue
 
@@ -60,7 +64,7 @@ class TreeParser:
 
             # Determine if it's a directory
             is_dir = item.endswith('/')
-            item_name = item[:-1] if is_dir else item
+            item_name = re.sub(r"[\/\"\\*?<>|:]", "", item).strip()
 
             # Adjust the path stack based on indent level
             while len(indent_stack) > indent_level + 1:
