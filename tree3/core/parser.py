@@ -21,11 +21,11 @@ class TreeParser:
         Parse the tree content into a list of paths.
 
         Returns:
-            tuple: (root_dir, list_of_paths)
+            tuple: (root_dir, list_of_paths_and_types)
         """
         lines = self.tree_content.strip().split('\n')
 
-        # Extract the root directory name from the first line
+        # Initialize data structures
         if not lines:
             raise ValueError("Empty tree structure")
 
@@ -39,7 +39,8 @@ class TreeParser:
 
         self.root_dir = re.sub(r"[\/\"\\*?<>|:]", "", root_match.group(1))
         current_path = Path(self.root_dir)
-        self.structure.append(current_path)
+        # Store (path, is_directory) pairs
+        self.structure = [(current_path, True)]  # Root is always a directory
 
         # Process the remaining lines to build the structure
         path_stack = [current_path]
@@ -51,7 +52,6 @@ class TreeParser:
                 continue
 
             # Calculate the indent level
-            # (number of spaces/pipes before the connector)
             indent_match = re.match(
                 r'^([\s│├└]*)([├└]─+\s*)([^\s].*?[^\s])(?:\s*)(?:#\s*.*)?$',
                 line)
@@ -62,18 +62,18 @@ class TreeParser:
             # Each level is 4 characters (either "│   " or "    ")
             indent_level = len(prefix) // 4
 
-            # Determine if it's a directory
+            # Determine if it's a directory based on trailing slash
             is_dir = item.endswith('/')
             item_name = re.sub(r"[\/\"\\*?<>|:]", "", item).strip()
 
-            # Adjust the path stack based on indent level
+            # Adjust the stack based on indent level
             while len(indent_stack) > indent_level + 1:
                 path_stack.pop()
                 indent_stack.pop()
 
             # Create the new path
             new_path = path_stack[-1] / item_name
-            self.structure.append(new_path)
+            self.structure.append((new_path, is_dir))
 
             # If it's a directory, add it to the stack for potential children
             if is_dir:
