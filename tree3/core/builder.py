@@ -14,19 +14,18 @@ def build_from_file(input_file):
 
     # Parse the tree content
     parser = TreeParser(tree_content)
-    root_dir, paths = parser.parse()
+    root_dir, paths_with_types = parser.parse()
 
     # Create directories and files
-    for path in paths:
-        # Simple heuristic to detect files (has extension)
-        if '.' in path.name:
+    for path, is_dir in paths_with_types:
+        if is_dir:
+            # Create directory if it doesn't exist
+            path.mkdir(parents=True, exist_ok=True)
+        else:
             # Create parent directories if they don't exist
             path.parent.mkdir(parents=True, exist_ok=True)
             # Create an empty file if it doesn't exist
             if not path.exists():
                 path.touch()
-        else:
-            # Create directory if it doesn't exist
-            path.mkdir(parents=True, exist_ok=True)
 
-    return root_dir, paths
+    return root_dir, [path for path, _ in paths_with_types]
