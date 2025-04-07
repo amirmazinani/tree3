@@ -67,8 +67,8 @@ def main():
             input_path = Path(args.input)
             if not input_path.exists():
                 print(
-                    f"Error: Input file '{args.input}'\
-                        does not exist.", file=sys.stderr)
+                    f"Error: Input file '{args.input}'",
+                    "does not exist.", file=sys.stderr)
                 sys.exit(1)
 
             build_from_file(input_path)
