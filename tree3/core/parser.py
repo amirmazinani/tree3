@@ -30,15 +30,16 @@ class TreeParser:
             raise ValueError("Empty tree structure")
 
         # Extract root directory
-        root_match = re.match(
-            r'^(?:\s*\/*\s*)([^\s].*?[^\s])(?:\s*\/*\s*)(?:#\s*.*)?$',
-            lines[0])
+        root_match = re.match(r"^(?:[\s│├└]*)*(?:[├└─]*\s)*(?:\s*\/*\s*)"
+                              r"(.*?[^\s])(?:\s*\/*\s*)(?:#\s*.*)?$", lines[0])
         if not root_match:
             raise ValueError(
                 "Invalid tree structure format: root directory not found")
 
-        self.root_dir = re.sub(r"[\/\"\\*?<>|:]", "", root_match.group(1))
-        current_path = Path(self.root_dir)
+        self.root_dir = re.sub(r"[\/\"\\*?<>|:]",
+                               "", root_match.group(1)).strip()
+        current_path = Path(
+            self.root_dir) if self.root_dir != "" else Path(".")
         # Store (path, is_directory) pairs
         self.structure = [(current_path, True)]  # Root is always a directory
 
